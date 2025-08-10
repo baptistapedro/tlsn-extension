@@ -555,17 +555,6 @@ export async function getSessionStorageByHost(host: string) {
   return ret;
 }
 
-async function getDefaultPluginsInstalled(): Promise<string | boolean> {
-  return appDb.get(AppDatabaseKey.DefaultPluginsInstalled).catch(() => false);
-}
-
-export async function setDefaultPluginsInstalled(
-  installed: string | boolean = false,
-) {
-  return mutex.runExclusive(async () => {
-    await appDb.put(AppDatabaseKey.DefaultPluginsInstalled, installed);
-  });
-}
 
 export async function getAppState() {
   return {
